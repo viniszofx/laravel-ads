@@ -1,11 +1,282 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@source "../views";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* Variáveis de cores e tema - Tons de Cinza com maior contraste */
+:root {
+    --color-background: #f8f9fa;
+    --color-foreground: #121416; /* Escurecido para maior contraste */
+    --color-card: #ffffff;
+    --color-card-foreground: #121416;
+    --color-primary: #343a40; /* Escurecido para maior contraste */
+    --color-primary-foreground: #ffffff;
+    --color-secondary: #dee2e6;
+    --color-secondary-foreground: #121416;
+    --color-muted: #e9ecef;
+    --color-muted-foreground: #495057; /* Escurecido para maior contraste */
+    --color-accent: #e9ecef;
+    --color-accent-foreground: #121416;
+    --color-destructive: #c82333; /* Escurecido para maior contraste */
+    --color-destructive-foreground: #ffffff;
+    --color-border: #adb5bd; /* Escurecido para maior contraste */
+    --color-input: #adb5bd;
+    --color-ring: #343a40;
+    --radius: 1rem;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+.dark {
+    --color-background: #121416; /* Escurecido para maior contraste */
+    --color-foreground: #ffffff;
+    --color-card: #1a1d20; /* Escurecido para maior contraste */
+    --color-card-foreground: #ffffff;
+    --color-primary: #ced4da; /* Clareado para maior contraste */
+    --color-primary-foreground: #121416;
+    --color-secondary: #343a40;
+    --color-secondary-foreground: #ffffff;
+    --color-muted: #343a40;
+    --color-muted-foreground: #ced4da; /* Clareado para maior contraste */
+    --color-accent: #343a40;
+    --color-accent-foreground: #ffffff;
+    --color-destructive: #e35d6a; /* Clareado para maior contraste */
+    --color-destructive-foreground: #121416;
+    --color-border: #495057; /* Clareado para maior contraste */
+    --color-input: #495057;
+    --color-ring: #adb5bd; /* Clareado para maior contraste */
+}
+
+/* Estilos base */
+body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Apple-like styling com tons de cinza e maior contraste */
+.apple-card {
+    background-color: rgba(255, 255, 255, 0.9); /* Aumentado opacidade para maior contraste */
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(173, 181, 189, 0.5); /* Escurecido para maior contraste */
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Aumentado para maior contraste */
+}
+
+.dark .apple-card {
+    background-color: rgba(26, 29, 32, 0.9); /* Escurecido e aumentado opacidade */
+    border-color: rgba(173, 181, 189, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.apple-button {
+    background-color: rgba(222, 226, 230, 1); /* Removido transparência para maior contraste */
+    color: #121416; /* Escurecido para maior contraste */
+    border: 1px solid rgba(173, 181, 189, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Aumentado para maior contraste */
+    transition: all 0.2s ease;
+    font-weight: 500; /* Adicionado para maior contraste */
+}
+
+.apple-button:hover {
+    background-color: rgba(206, 212, 218, 1);
+}
+
+.dark .apple-button {
+    background-color: rgba(73, 80, 87, 1); /* Removido transparência */
+    color: #ffffff;
+    border-color: rgba(108, 117, 125, 0.5);
+}
+
+.dark .apple-button:hover {
+    background-color: rgba(108, 117, 125, 1);
+}
+
+.apple-button-primary {
+    background-color: #343a40; /* Removido transparência */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Aumentado para maior contraste */
+    transition: all 0.2s ease;
+    font-weight: 500; /* Adicionado para maior contraste */
+}
+
+.apple-button-primary:hover {
+    background-color: #212529;
+}
+
+.dark .apple-button-primary {
+    background-color: #ced4da;
+    color: #121416;
+}
+
+.dark .apple-button-primary:hover {
+    background-color: #e9ecef;
+}
+
+/* Correção para os inputs com maior contraste */
+.apple-input {
+    background-color: white;
+    color: #121416;
+    border: 2px solid #adb5bd; /* Engrossado e escurecido para maior contraste */
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    transition: all 0.2s ease;
+    font-weight: 400;
+}
+
+.apple-input:focus {
+    border-color: #343a40; /* Escurecido para maior contraste */
+    box-shadow: 0 0 0 2px rgba(52, 58, 64, 0.3); /* Engrossado para maior contraste */
+    outline: none;
+}
+
+.dark .apple-input {
+    background-color: #343a40;
+    color: white;
+    border-color: #6c757d; /* Clareado para maior contraste */
+}
+
+.dark .apple-input:focus {
+    border-color: #ced4da; /* Clareado para maior contraste */
+    box-shadow: 0 0 0 2px rgba(206, 212, 218, 0.3);
+}
+
+.apple-input:disabled {
+    opacity: 0.6; /* Aumentado de 0.5 para maior contraste */
+    cursor: not-allowed;
+}
+
+.apple-table {
+    border-radius: 1rem;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Adicionado para maior contraste */
+}
+
+.apple-table th {
+    background-color: rgba(222, 226, 230, 0.9); /* Aumentado opacidade */
+    font-size: 0.875rem;
+    font-weight: 600; /* Aumentado para maior contraste */
+    color: #495057; /* Escurecido para maior contraste */
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.apple-table th:first-child {
+    border-top-left-radius: 1rem;
+}
+
+.apple-table th:last-child {
+    border-top-right-radius: 1rem;
+}
+
+.dark .apple-table th {
+    background-color: rgba(73, 80, 87, 0.9);
+    color: #e9ecef; /* Clareado para maior contraste */
+}
+
+.apple-table td {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(173, 181, 189, 0.5); /* Escurecido para maior contraste */
+}
+
+.dark .apple-table td {
+    border-top-color: rgba(108, 117, 125, 0.5); /* Clareado para maior contraste */
+}
+
+.apple-table tr:hover td {
+    background-color: rgba(222, 226, 230, 0.7); /* Aumentado opacidade */
+}
+
+.dark .apple-table tr:hover td {
+    background-color: rgba(73, 80, 87, 0.7);
+}
+
+.apple-glass {
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.9); /* Aumentado opacidade */
+    border: 1px solid rgba(173, 181, 189, 0.5); /* Escurecido para maior contraste */
+}
+
+.dark .apple-glass {
+    background-color: rgba(26, 29, 32, 0.9); /* Escurecido e aumentado opacidade */
+    border-color: rgba(108, 117, 125, 0.5);
+}
+
+/* Utilitários adicionais */
+.text-muted-foreground {
+    color: var(--color-muted-foreground);
+    font-weight: 500; /* Adicionado para maior contraste */
+}
+
+.bg-gradient-to-b {
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-background),
+        rgba(var(--color-background), 0.95)
+    );
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+/* Cores específicas para mensagens de sucesso e erro com maior contraste */
+.text-red-500 {
+    color: #c82333; /* Escurecido para maior contraste */
+    font-weight: 500;
+}
+
+.text-red-600 {
+    color: #a71d2a; /* Escurecido para maior contraste */
+    font-weight: 500;
+}
+
+.text-green-800 {
+    color: #0f5132; /* Escurecido para maior contraste */
+    font-weight: 500;
+}
+
+.bg-green-50 {
+    background-color: #d1e7dd;
+    border: 1px solid #0f5132; /* Adicionado para maior contraste */
+}
+
+.bg-red-100 {
+    background-color: #f8d7da;
+    border: 1px solid #a71d2a; /* Adicionado para maior contraste */
+}
+
+/* Adicionando classes para textos com maior contraste */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: var(--color-foreground);
+}
+
+label {
+    font-weight: 500;
+    color: var(--color-foreground);
+}
+
+/* Melhorando contraste para links */
+a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.dark a {
+    color: #6ea8fe;
+}
+
+a:hover {
+    text-decoration: underline;
 }

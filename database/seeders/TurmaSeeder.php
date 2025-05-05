@@ -26,6 +26,14 @@ class TurmaSeeder extends Seeder
                 'sala' => 'Sala 102',
                 'horario' => '19:00 - 23:00',
             ],
+            [
+                'numero' => 'ADS-2023-1C',
+                'semestre' => '1º',
+                'periodo' => 'Vespertino',
+                'professor' => 'Dr. João Santos',
+                'sala' => 'Sala 103',
+                'horario' => '14:00 - 18:00',
+            ],
             // Adicione mais turmas conforme necessário
         ];
 

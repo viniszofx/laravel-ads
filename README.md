@@ -56,6 +56,8 @@ Este é um projeto Laravel configurado para usar PostgreSQL como banco de dados 
 
    ```bash
    php artisan migrate
+
+   php artisan db:seed
    ```
 
 ## Executando o Projeto
